@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BIOBIM Lab · David Volkmar Vélez</title>
+  <meta name="description" content="Laboratorio de herramientas bioclimáticas BIOBIM y portafolio de David Volkmar Vélez, arquitecto y magíster en Bioclimática." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg" />
+</head>
+<body>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- ================= NAV ================= -->
+  <header class="nav" id="nav">
+    <a href="#inicio" class="brand" data-view-link="lab">
+      <svg viewBox="0 0 32 32" class="brand-mark" aria-hidden="true">
+        <defs>
+          <mask id="bbNavHorizon" maskUnits="userSpaceOnUse" x="-4" y="-14" width="40" height="46">
+            <rect x="-4" y="-14" width="40" height="46" fill="#fff" />
+            <path d="M2.5 25C8 16.5 24 16.5 29.5 25V32H2.5Z" fill="#000" />
+            <path d="M2.5 25C8 16.5 24 16.5 29.5 25" fill="none" stroke="#000" stroke-width="6" stroke-linecap="round" />
+          </mask>
+        </defs>
+        <g mask="url(#bbNavHorizon)"><g class="bm-rise"><circle cx="16" cy="17.5" r="8.4" class="bm-sun" /></g></g>
+        <path d="M2.5 25C8 16.5 24 16.5 29.5 25" class="bm-horizon" />
+      </svg>
+      <span class="brand-word">BIO<b>BIM</b><small>Lab</small></span>
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Principal">
+      <a href="#proceso" data-view-link="lab">Proceso</a>
+      <a href="#investigacion" data-view-link="lab">Investigación</a>
+    </nav>
+
+    <div class="view-switch" role="tablist" aria-label="Cambiar vista">
+      <button role="tab" class="vs-btn is-active" data-view="lab" aria-selected="true"><span class="l">Laboratorio</span><span class="s">Lab</span></button>
+      <button role="tab" class="vs-btn" data-view="tools" aria-selected="false"><span class="l">Herramientas</span><span class="s">Tools</span></button>
+      <button role="tab" class="vs-btn" data-view="portfolio" aria-selected="false"><span class="l">Portafolio</span><span class="s">Perfil</span></button>
+      <span class="vs-pill" aria-hidden="true"></span>
+    </div>
+
+    <button class="icon-btn" id="themeToggle" aria-label="Cambiar tema claro / oscuro">
+      <svg viewBox="0 0 24 24" class="i-sun"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+      <svg viewBox="0 0 24 24" class="i-moon"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+    <button class="icon-btn burger" id="burger" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <!-- =====================================================================
+       VISTA 1 · LABORATORIO BIOBIM
+       ===================================================================== -->
+  <main class="view is-active" id="view-lab" data-view-panel="lab">
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <svg class="contours" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g id="contourGroup"></g>
+      </svg>
+      <div class="hero-grid wrap">
+        <div class="hero-copy">
+          <p class="eyebrow reveal"><span class="dot"></span> Paquete de herramientas bioclimáticas · Medellín 6.25° N</p>
+          <h1 class="hero-title reveal">
+            Diseñar <em>con</em> el clima,<br />
+            <span class="grad">dentro del modelo.</span>
+          </h1>
+          <p class="hero-lead reveal">
+            <strong>BIOBIM</strong> es un modelo de enseñanza-aprendizaje que lleva la simulación bioclimática al
+            <em>inicio</em> del proceso de diseño, dentro de un flujo BIM continuo, sin reconstruir el modelo en cada revisión.
+          </p>
+          <div class="hero-cta reveal">
+            <a href="#herramientas" class="btn btn-primary magnetic" data-view-link="tools">
+              Abrir herramientas
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#proceso" class="btn btn-ghost magnetic" data-view-link="lab">¿Cómo funciona BIOBIM?</a>
+          </div>
+          <ul class="hero-meta reveal">
+            <li><b>6</b><span>herramientas</span></li>
+            <li><b>3</b><span>etapas cíclicas</span></li>
+            <li><b>4</b><span>fases del proyecto</span></li>
+          </ul>
+        </div>
+
+        <!-- Sun path widget -->
+        <div class="sunpath card reveal" id="sunpath">
+          <div class="sp-head">
+            <div>
+              <p class="mono tiny" id="lmKicker">Sol · viento · forma · 6.25° N</p>
+              <h3 id="lmHeading">Modelo bioclimático vivo</h3>
+            </div>
+            <span class="live-pill"><i></i>En vivo</span>
+          </div>
+
+          <div class="lm-modes" role="tablist" aria-label="Modo de la experiencia">
+            <button class="lm-mode is-on" role="tab" aria-selected="true" data-mode="model">Modelo vivo</button>
+            <button class="lm-mode" role="tab" aria-selected="false" data-mode="chart">Carta solar</button>
+          </div>
+
+          <!-- Modo 1 · Modelo vivo -->
+          <div class="lm-panel" data-panel="model">
+            <div class="lm-stage">
+              <canvas id="lmCanvas" role="img" aria-label="Volumen que se transforma según el sol y el viento"></canvas>
+              <div class="lm-clock mono" id="lmClock">21 mar · 09:00</div>
+              <div class="lm-layers" role="group" aria-label="Capas">
+                <button class="lm-layer is-on" data-layer="shadow" aria-pressed="true">Sombras</button>
+                <button class="lm-layer is-on" data-layer="heat" aria-pressed="true">Radiación</button>
+                <button class="lm-layer is-on" data-layer="wind" aria-pressed="true">Viento</button>
+              </div>
+            </div>
+
+            <ol class="lm-steps" id="lmSteps" aria-label="Decisiones de diseño"></ol>
+            <p class="lm-caption" id="lmCaption"></p>
+
+            <div class="lm-metrics">
+              <div class="lm-metric" style="--c:var(--heat)">
+                <span class="mono tiny">Radiación en fachadas</span>
+                <div class="lm-bar"><i id="lmRadBar"></i></div><b id="lmRad">100 %</b>
+              </div>
+              <div class="lm-metric" style="--c:var(--wind)">
+                <span class="mono tiny">Área con ventilación cruzada</span>
+                <div class="lm-bar"><i id="lmVentBar"></i></div><b id="lmVent">0 %</b>
+              </div>
+              <div class="lm-metric" style="--c:var(--leaf)">
+                <span class="mono tiny">Permeabilidad al viento</span>
+                <div class="lm-bar"><i id="lmPermBar"></i></div><b id="lmPerm">0 %</b>
+              </div>
+            </div>
+
+            <label class="lm-wind">
+              <span class="mono tiny">Viento desde <b id="lmWindLabel">N · 0°</b></span>
+              <input type="range" id="lmWind" min="0" max="359" step="1" value="0" />
+            </label>
+            <p class="lm-note">Cálculo geométrico simplificado con fines didácticos: sol real de Medellín, sin sombras entre bloques; ventilación cruzada si la profundidad en la dirección del viento es ≤ 15 m (≈ 5 × altura libre; <cite data-ref="cibse2005"></cite>). Geometría solar según <cite data-ref="duffie2013"></cite>.</p>
+          </div>
+
+          <!-- Modo 2 · Carta solar -->
+          <div class="lm-panel" data-panel="chart" hidden>
+          <svg viewBox="0 0 320 320" class="sp-svg" id="spSvg" role="img" aria-label="Diagrama de trayectoria solar">
+            <defs>
+              <radialGradient id="sunGlow"><stop offset="0" stop-color="#ffd27a" stop-opacity=".9"/><stop offset="1" stop-color="#ffb547" stop-opacity="0"/></radialGradient>
+            </defs>
+            <g id="spGrid"></g>
+            <g id="spPaths"></g>
+            <polygon id="spShadow" class="sp-shadow" points=""/>
+            <rect x="148" y="140" width="24" height="40" rx="2" class="sp-building" id="spBuilding"/>
+            <line id="spRay" class="sp-ray" x1="160" y1="160" x2="160" y2="160"/>
+            <circle id="spSunGlow" r="22" fill="url(#sunGlow)"/>
+            <circle id="spSun" r="7" class="sp-sun"/>
+          </svg>
+          <div class="sp-controls">
+            <div class="sp-months" role="radiogroup" aria-label="Fecha">
+              <button class="seg" data-doy="172" role="radio">21 Jun</button>
+              <button class="seg is-on" data-doy="80" role="radio">21 Mar</button>
+              <button class="seg" data-doy="355" role="radio">21 Dic</button>
+            </div>
+            <label class="sp-slider">
+              <span class="mono tiny">Hora solar</span>
+              <input type="range" id="spHour" min="6" max="18" step="0.05" value="9" />
+            </label>
+          </div>
+          <div class="sp-read">
+            <div><span class="mono tiny">fecha</span><b id="spD">21 mar</b></div>
+            <div><span class="mono tiny">hora</span><b id="spT">09:00</b></div>
+            <div><span class="mono tiny">altitud</span><b id="spAlt">—</b></div>
+            <div><span class="mono tiny">azimut</span><b id="spAz">—</b></div>
+            <div><span class="mono tiny">sombra</span><b id="spSh">—</b></div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#manifiesto" class="scroll-cue" aria-label="Bajar"><span></span></a>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Radiación solar</span><i>✦</i><span>Ventilación natural</span><i>✦</i><span>Confort térmico</span><i>✦</i><span>Acústica</span><i>✦</i><span>CFD</span><i>✦</i><span>IFC · ISO 16739</span><i>✦</i><span>Revit</span><i>✦</i><span>Andamiaje cognitivo</span><i>✦</i>
+        <span>Radiación solar</span><i>✦</i><span>Ventilación natural</span><i>✦</i><span>Confort térmico</span><i>✦</i><span>Acústica</span><i>✦</i><span>CFD</span><i>✦</i><span>IFC · ISO 16739</span><i>✦</i><span>Revit</span><i>✦</i><span>Andamiaje cognitivo</span><i>✦</i>
+      </div>
+    </div>
+
+    <!-- MANIFIESTO / PROBLEMA -->
+    <section class="section" id="manifiesto">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">00</span>
+          <h2>El problema: la bioclimática llega <span class="strike">tarde</span>.</h2>
+          <p class="sec-lead">
+            Hoy la simulación ambiental se hace <em>después</em> de decidir orientación, volumen y proporción. Se comprueba, no se diseña (<cite data-ref="pompei2019"></cite>; <cite data-ref="elzeyadi2020"></cite>; <cite data-ref="fernandez2022"></cite>).
+            BIOBIM invierte ese orden.
+          </p>
+        </div>
+
+        <div class="stats">
+          <article class="stat card reveal tilt">
+            <b class="counter" data-to="44.4" data-dec="1" data-suffix="%">0</b>
+            <p>de los arquitectos en Colombia trabaja temas bioclimáticos</p>
+            <span class="src"><cite data-ref="cpnaa2018"></cite></span>
+          </article>
+          <article class="stat card reveal tilt">
+            <b class="counter" data-to="20" data-suffix="%">0</b>
+            <p>trabaja con BIM: dos comunidades que casi no se cruzan</p>
+            <span class="src"><cite data-ref="cpnaa2018"></cite></span>
+          </article>
+          <article class="stat card reveal tilt">
+            <b class="counter" data-to="19">0</b>
+            <p>entrevistas a asesores y diseñadores que confirman la “comprobación tardía”</p>
+            <span class="src"><cite data-ref="volkmar2024"></cite></span>
+          </article>
+          <article class="stat card reveal tilt">
+            <b class="counter" data-prefix="≤" data-to="20" data-suffix="%">0</b>
+            <p>de ahorro energético posible si las decisiones pasivas se toman al inicio</p>
+            <span class="src"><cite data-ref="azhar2010"></cite></span>
+          </article>
+        </div>
+
+        <!-- Curva de esfuerzo -->
+        <div class="effort card reveal" id="effort">
+          <div class="effort-head">
+            <div>
+              <p class="mono tiny">Curva de esfuerzo de diseño · <cite data-ref="curt2004"></cite></p>
+              <h3>¿Cuándo se toman las decisiones que importan?</h3>
+            </div>
+            <div class="toggle" role="radiogroup" aria-label="Modo de proceso">
+              <button class="tg is-on" data-mode="trad" role="radio" aria-checked="true">Tradicional</button>
+              <button class="tg" data-mode="bio" role="radio" aria-checked="false">BIOBIM</button>
+              <span class="tg-pill"></span>
+            </div>
+          </div>
+          <svg viewBox="0 0 640 300" class="effort-svg" role="img" aria-label="Curva de esfuerzo de diseño">
+            <g class="ef-grid">
+              <line x1="40" y1="250" x2="620" y2="250"/>
+              <line x1="156" y1="30" x2="156" y2="250"/><line x1="272" y1="30" x2="272" y2="250"/>
+              <line x1="388" y1="30" x2="388" y2="250"/><line x1="504" y1="30" x2="504" y2="250"/>
+            </g>
+            <g class="ef-bands" id="efBands">
+              <rect x="40" y="30" width="116" height="220" data-i="0"/>
+              <rect x="156" y="30" width="116" height="220" data-i="1"/>
+              <rect x="272" y="30" width="116" height="220" data-i="2"/>
+              <rect x="388" y="30" width="116" height="220" data-i="3"/>
+              <rect x="504" y="30" width="116" height="220" data-i="4"/>
+            </g>
+            <path class="ef-impact" d="M40 50 C 200 55, 330 150, 620 235"/>
+            <path class="ef-cost" d="M40 240 C 300 235, 420 150, 620 45"/>
+            <path class="ef-effort ef-trad" d="M40 240 C 200 238, 300 215, 400 120 S 540 60, 620 150"/>
+            <path class="ef-effort ef-bio" d="M40 225 C 110 200, 170 70, 250 70 S 420 190, 620 232"/>
+            <g class="ef-labels">
+              <text x="98" y="272">Prefactibilidad</text><text x="214" y="272">Idea básica</text>
+              <text x="330" y="272">Anteproyecto</text><text x="446" y="272">Proyecto</text><text x="562" y="272">Construcción</text>
+            </g>
+          </svg>
+          <div class="effort-legend">
+            <span><i class="lg lg-impact"></i>Capacidad de impactar el desempeño</span>
+            <span><i class="lg lg-cost"></i>Costo de los cambios</span>
+            <span><i class="lg lg-effort"></i><b id="efLabel">Esfuerzo bioclimático · tradicional</b></span>
+          </div>
+          <p class="effort-note" id="efNote">
+            En el proceso tradicional el esfuerzo de verificación ambiental se concentra en proyecto y construcción,
+            cuando cambiar la forma ya es costoso.
+          </p>
+          <p class="fig-src">Fuente: elaboración propia a partir de la curva de esfuerzo de diseño (<cite data-ref="curt2004"></cite>) y de la comparación por etapas de <cite data-ref="volkmar2024"></cite>. Curvas esquemáticas, no a escala.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESO BIOBIM -->
+    <section class="section section-alt" id="proceso">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">01</span>
+          <h2>El proceso <span class="grad">BIOBIM</span></h2>
+          <p class="sec-lead">
+            Tres etapas cíclicas que acompañan las fases del proyecto arquitectónico. En cada ciclo aparecen las herramientas
+            que el estudiante necesita, justo cuando las necesita.
+          </p>
+        </div>
+
+        <div class="process">
+          <!-- Ring -->
+          <div class="ring-wrap reveal">
+            <svg viewBox="0 0 360 360" class="ring" id="ring" role="tablist" aria-label="Etapas BIOBIM">
+              <defs>
+                <marker id="arrowHead" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ring-arrow"/></marker>
+              </defs>
+              <circle cx="180" cy="180" r="150" class="ring-track"/>
+              <circle cx="180" cy="180" r="150" class="ring-orbit" id="ringOrbit"/>
+              <g id="ringSegs"></g>
+              <circle cx="180" cy="180" r="84" class="ring-core"/>
+              <text x="180" y="172" class="ring-core-t">BIO<tspan class="b">BIM</tspan></text>
+              <text x="180" y="196" class="ring-core-s">ciclo de diseño</text>
+            </svg>
+          </div>
+
+          <!-- Stage panel -->
+          <div class="stage-panel reveal">
+            <div class="stage-tabs" role="tablist">
+              <button class="st-tab is-on" data-stage="0" role="tab"><span>01</span>Requerimientos</button>
+              <button class="st-tab" data-stage="1" role="tab"><span>02</span>Estrategias</button>
+              <button class="st-tab" data-stage="2" role="tab"><span>03</span>Montaje y validación</button>
+            </div>
+
+            <div class="compare-toggle">
+              <span class="mono tiny">Comparar</span>
+              <label class="switch">
+                <input type="checkbox" id="compareSwitch" checked />
+                <span class="sw-track"><span class="sw-knob"></span></span>
+                <span class="sw-label" id="swLabel">Con BIOBIM</span>
+              </label>
+            </div>
+
+            <article class="stage-body" id="stageBody" aria-live="polite">
+              <p class="stage-phase mono" id="stPhase">Prefactibilidad</p>
+              <h3 id="stTitle">Requerimientos del proyecto</h3>
+              <p id="stText"></p>
+              <div class="stage-tools">
+                <p class="mono tiny">Herramientas que aparecen en esta etapa</p>
+                <div class="chips" id="stTools"></div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Flujo IFC -->
+        <div class="flow reveal">
+          <div class="flow-node"><span class="fn-ic">▭</span><b>Modelo BIM</b><small>Revit / cualquier autor</small></div>
+          <div class="flow-line"><i></i></div>
+          <div class="flow-node accent"><span class="fn-ic">⬡</span><b>IFC abierto</b><small><cite data-ref="iso16739">ISO 16739-1:2024</cite></small></div>
+          <div class="flow-line"><i></i></div>
+          <div class="flow-node"><span class="fn-ic">◎</span><b>Herramientas BIOBIM</b><small>lectura directa, sin reconstruir</small></div>
+          <div class="flow-line"><i></i></div>
+          <div class="flow-node"><span class="fn-ic">↺</span><b>Decisión de diseño</b><small>iterar en el mismo flujo</small></div>
+        </div>
+          <p class="fig-src">Fuente: elaboración propia a partir de <cite data-ref="volkmar2024"></cite> y de la propuesta doctoral (<cite data-ref="volkmarProp"></cite>).</p>
+      </div>
+    </section>
+
+    <!-- ADELANTO DE HERRAMIENTAS -->
+    <section class="section" id="paquete">
+      <div class="wrap teaser card reveal">
+        <div class="teaser-copy">
+          <span class="sec-num">02</span>
+          <h2>Seis herramientas, <span class="grad">cada una en su momento.</span></h2>
+          <p class="sec-lead">
+            Análisis del lugar, ángulos solares, ventilación, térmico, acústico y CFD. Mira en qué fase del proyecto entra
+            cada una y en qué orden se implementan.
+          </p>
+          <button class="btn btn-primary magnetic" data-view="tools">
+            Ir a Herramientas
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+        <ol class="teaser-order" id="teaserOrder" aria-label="Orden de implementación"></ol>
+      </div>
+    </section>
+
+    <!-- INVESTIGACIÓN -->
+    <section class="section section-alt" id="investigacion">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">03</span>
+          <h2>Investigación que sostiene el laboratorio</h2>
+          <p class="sec-lead">De la validación profesional en la maestría a la validación pedagógica en el doctorado.</p>
+        </div>
+
+        <!-- ================= MAESTRÍA (a fondo) ================= -->
+        <article class="msc card reveal" id="maestria">
+          <header class="msc-head">
+            <div class="rs-top">
+              <span class="badge">Maestría en Bioclimática · 2024</span>
+              <span class="mono tiny">Universidad de San Buenaventura · Medellín</span>
+            </div>
+            <h3>Ensayo de una metodología de integración de estrategias bioclimáticas en el proceso de diseño arquitectónico a través de BIM</h3>
+            <p class="msc-lead">
+              La investigación que dio origen a BIOBIM: una ruta para que la asesoría bioclimática avance
+              <em>al mismo ritmo</em> que el diseño en BIM, validada en un proyecto real.
+            </p>
+            <div class="msc-meta">
+              <span><b>Asesor</b> Lucas Arango Díaz, PhD</span>
+              <span><b>Coasesor</b> Luis Frey Zapata Henao, MSc</span>
+              <span><b>Línea</b> Bienestar humano y tecnología</span>
+              <span><b>Grupo</b> Hombre, Proyecto y Ciudad</span>
+            </div>
+          </header>
+
+          <div class="msc-tabs" role="tablist" aria-label="Contenido de la maestría">
+            <button class="msc-tab is-on" role="tab" data-t="problema">Problema</button>
+            <button class="msc-tab" role="tab" data-t="objetivos">Objetivos</button>
+            <button class="msc-tab" role="tab" data-t="metodologia">Metodología</button>
+            <button class="msc-tab" role="tab" data-t="aporte">Aporte clave</button>
+            <button class="msc-tab" role="tab" data-t="estado">Estado del arte</button>
+            <button class="msc-tab" role="tab" data-t="resultados">Resultados</button>
+            <span class="msc-ink" aria-hidden="true"></span>
+          </div>
+
+          <!-- Problema -->
+          <div class="msc-panel is-on" data-panel="problema" role="tabpanel">
+            <div class="msc-2col">
+              <div>
+                <h4>Dos ritmos que no coinciden</h4>
+                <p>
+                  El diseño en BIM avanza de forma continua: cada decisión actualiza el modelo. La asesoría bioclimática
+                  tradicional, en cambio, llega en consultas puntuales, con simulaciones en software separado y datos de
+                  entrada fijos. Cuando sus recomendaciones llegan, el proyecto ya avanzó y cambiarlo es costoso.
+                </p>
+                <p>
+                  Los métodos CAD tradicionales no permiten análisis de sostenibilidad en las etapas iniciales, por eso se hacen
+                  después del diseño (<cite data-ref="martin2014"></cite>). El resultado es un proceso lento y costoso (<cite data-ref="gao2019"></cite>),
+                  justo cuando se podría ahorrar hasta un 20 % de energía con decisiones tempranas (<cite data-ref="azhar2010"></cite>).
+                </p>
+                <blockquote class="msc-quote">
+                  El problema tiene que ver con los ritmos de la asesoría bioclimática frente a los ritmos del diseño arquitectónico.
+                  <footer><cite data-ref="volkmar2024"></cite></footer>
+                </blockquote>
+              </div>
+              <div class="sync card" id="sync">
+                <div class="sync-head">
+                  <p class="mono tiny">Sincronización del proceso</p>
+                  <label class="switch">
+                    <input type="checkbox" id="syncSwitch" />
+                    <span class="sw-track"><span class="sw-knob"></span></span>
+                    <span class="sw-label" id="syncLabel">Tradicional</span>
+                  </label>
+                </div>
+                <svg viewBox="0 0 420 230" class="sync-svg" role="img" aria-label="Ritmo del diseño frente al ritmo de la asesoría bioclimática">
+                  <text x="0" y="40" class="sy-l">Diseño BIM</text>
+                  <line x1="100" y1="36" x2="410" y2="36" class="sy-track"/>
+                  <g id="syDesign"></g>
+                  <text x="0" y="120" class="sy-l">Asesoría</text>
+                  <text x="0" y="134" class="sy-l">bioclimática</text>
+                  <line x1="100" y1="124" x2="410" y2="124" class="sy-track"/>
+                  <g id="syAdvice"></g>
+                  <g id="syLinks"></g>
+                  <g class="sy-axis">
+                    <text x="125" y="210">Prefact.</text><text x="200" y="210">Idea básica</text>
+                    <text x="285" y="210">Anteproy.</text><text x="370" y="210">Proyecto</text>
+                  </g>
+                </svg>
+                <p class="sync-note" id="syncNote"></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Objetivos -->
+          <div class="msc-panel" data-panel="objetivos" role="tabpanel" hidden>
+            <div class="goal-main">
+              <p class="mono tiny">Objetivo general</p>
+              <p>Ensayar una metodología de integración de la asesoría bioclimática al proceso de diseño arquitectónico a través de BIM.</p>
+            </div>
+            <div class="goals">
+              <div class="goal tilt" style="--c:var(--leaf)">
+                <span class="goal-n">1</span><b>Evaluar</b>
+                <p>Una ruta metodológica para integrar estrategias bioclimáticas en el proceso de diseño, considerando las etapas clave del proyecto, para obtener datos que permitan perfeccionarla.</p>
+              </div>
+              <div class="goal tilt" style="--c:var(--wind)">
+                <span class="goal-n">2</span><b>Contrastar</b>
+                <p>La viabilidad y efectividad de la metodología BIM aplicándola en un caso real, para identificar sus fortalezas y limitaciones.</p>
+              </div>
+              <div class="goal tilt" style="--c:var(--flow)">
+                <span class="goal-n">3</span><b>Analizar</b>
+                <p>El impacto y la contribución de la metodología en los procesos de diseño, para identificar mejoras en eficiencia y sostenibilidad.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Metodología -->
+          <div class="msc-panel" data-panel="metodologia" role="tabpanel" hidden>
+            <p class="msc-intro">Tres etapas, nueve actividades y seis meses. Toca una actividad para ver su producto y su lugar en el cronograma.</p>
+            <div class="method">
+              <ol class="method-steps" id="methodSteps"></ol>
+              <div class="gantt card">
+                <div class="gantt-head"><span></span><span>M1</span><span>M2</span><span>M3</span><span>M4</span><span>M5</span><span>M6</span></div>
+                <div class="gantt-body" id="gantt"></div>
+                <p class="method-out" id="methodOut"></p>
+              </div>
+            </div>
+          <p class="fig-src">Fuente: metodología y cronograma de <cite data-ref="volkmar2024"></cite>.</p>
+          </div>
+
+          <!-- Aporte -->
+          <div class="msc-panel" data-panel="aporte" role="tabpanel" hidden>
+            <div class="msc-2col">
+              <div>
+                <h4>No simular todo: elegir bien qué simular</h4>
+                <p>
+                  La segunda etapa demuestra que no hace falta simular el edificio completo para obtener información útil. La clave es
+                  que el diseñador <b>seleccione estratégicamente los espacios</b> que representan las condiciones críticas:
+                  la fachada más expuesta, el recinto más ocupado o el que no ventila.
+                </p>
+                <p>
+                  Con criterios de selección definidos, la simulación se vuelve rápida, se repite en cada iteración y responde
+                  preguntas concretas. Así la asesoría puede ir al ritmo del diseño.
+                </p>
+                <ul class="crit-sel">
+                  <li><i style="--c:var(--sun)"></i>Mayor exposición solar</li>
+                  <li><i style="--c:var(--wind)"></i>Ventilación comprometida</li>
+                  <li><i style="--c:var(--sound)"></i>Mayor ocupación o uso crítico</li>
+                </ul>
+              </div>
+              <div class="plan card" id="plan">
+                <div class="sync-head">
+                  <p class="mono tiny">Esquema ilustrativo</p>
+                  <div class="toggle" role="radiogroup" aria-label="Modo de simulación">
+                    <button class="tg is-on" data-mode="all" role="radio" aria-checked="true">Todo el edificio</button>
+                    <button class="tg" data-mode="sel" role="radio" aria-checked="false">Selección</button>
+                    <span class="tg-pill"></span>
+                  </div>
+                </div>
+                <svg viewBox="0 0 400 260" class="plan-svg" id="planSvg" role="img" aria-label="Planta esquemática con espacios seleccionados"></svg>
+                <div class="plan-read">
+                  <div><span class="mono tiny">espacios simulados</span><b id="planCount">—</b></div>
+                  <div><span class="mono tiny">carga de simulación</span><div class="plan-bar"><span id="planBar"></span></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Estado del arte -->
+          <div class="msc-panel" data-panel="estado" role="tabpanel" hidden>
+            <p class="msc-intro">
+              <b class="big-n">24</b> fuentes revisadas, organizadas en tres ejes que alimentan la ruta metodológica.
+            </p>
+            <div class="axes">
+              <div class="axis tilt" style="--c:var(--sun)">
+                <b>Simulaciones</b>
+                <p>La parte analítica y de revisión del proceso de diseño: qué se puede delegar al software y qué requiere criterio humano.</p>
+                <ul>
+                  <li><cite data-ref="parra2020">Parra Correa (2020)</cite>: optimización multiobjetivo con modelos paramétricos.</li>
+                  <li><cite data-ref="finocchiaro2018">Finocchiaro y Lobaccaro (2018)</cite>: <i>Bioclimatic Design of Green Buildings</i>.</li>
+                  <li><cite data-ref="camporeale2012">Camporeale (2012)</cite>: algoritmos genéticos en diseño energéticamente eficiente.</li>
+                </ul>
+              </div>
+              <div class="axis tilt" style="--c:var(--leaf)">
+                <b>Marco normativo</b>
+                <p>La alineación con métricas nacionales e internacionales de sostenibilidad.</p>
+                <ul>
+                  <li><cite data-ref="gobcol2020">Estrategia Nacional BIM 2020-2026 (Gobierno de Colombia, 2020)</cite>.</li>
+                  <li><cite data-ref="reus2016">Reus Netto y Czajkowski (2016)</cite>: normas de desempeño térmico en Argentina y Brasil.</li>
+                  <li><cite data-ref="cascone2023">Cascone (2023)</cite>: integración entre BIM y LEED.</li>
+                </ul>
+              </div>
+              <div class="axis tilt" style="--c:var(--wind)">
+                <b>BIM y sostenibilidad</b>
+                <p>Cómo aplicar decisiones ambientales dentro del modelo de información.</p>
+                <ul>
+                  <li><cite data-ref="martin2014">Martín Dorta et al. (2014)</cite>: BIM e indicadores de sostenibilidad.</li>
+                  <li><cite data-ref="zanni2016">Zanni et al. (2016)</cite>: roles y requisitos del diseño sostenible con BIM.</li>
+                  <li>Azhar et al. (<cite data-ref="azhar2009">2009</cite>, <cite data-ref="azhar2010">2010</cite>): análisis de desempeño basados en BIM.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Resultados -->
+          <div class="msc-panel" data-panel="resultados" role="tabpanel" hidden>
+            <div class="results">
+              <div class="res card tilt"><b class="counter" data-to="19">0</b><span>entrevistas a asesores y diseñadores bioclimáticos confirmaron el patrón de “comprobación tardía”.</span></div>
+              <div class="res card tilt"><b>1</b><span>caso de estudio real: la vivienda Coocon, en Guatapé, Antioquia.</span></div>
+              <div class="res card tilt"><b>3</b><span>etapas de trabajo definidas: descripción del proyecto, formulación de estrategias, montaje y validación.</span></div>
+            </div>
+            <div class="msc-2col">
+              <div>
+                <h4>Qué se validó</h4>
+                <ul class="checks">
+                  <li>La <b>estructura general de trabajo</b> que hoy organiza el proceso BIOBIM.</li>
+                  <li>La viabilidad de <b>ajustar decisiones bioclimáticas sin reconstruir el modelo</b> en cada revisión.</li>
+                  <li>Una ruta que ordena las estrategias según su exigencia técnica, desde la orientación hasta las que requieren simulación.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Qué quedó abierto</h4>
+                <ul class="checks open">
+                  <li>La validación fue técnica y profesional, en un <b>caso único</b>.</li>
+                  <li>No involucró estudiantes ni midió resultados de aprendizaje.</li>
+                  <li>No contó con grupo de control.</li>
+                </ul>
+                <p class="fig-src" style="margin:0 0 12px">Fuente: resultados de <cite data-ref="volkmar2024"></cite>, tal como se reportan en la propuesta doctoral (<cite data-ref="volkmarProp"></cite>).</p>
+                <p class="bridge">Estas preguntas abiertas son el punto de partida de la propuesta doctoral. ↓</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <p class="mono tiny next-label reveal">Siguiente paso</p>
+        <div class="research">
+          <article class="rs card reveal tilt rs-phd">
+            <div class="rs-top">
+              <span class="badge badge-sun">Propuesta doctoral</span>
+              <span class="mono tiny">UNAL Medellín · Facultad de Minas</span>
+            </div>
+            <h3>Modelo de enseñanza-aprendizaje basado en la integración de estrategias bioclimáticas en el diseño a través de BIM</h3>
+            <p>
+              Doctorado en Ingeniería · Sistemas e Informática. BIOBIM se envuelve en herramientas de <b>andamiaje cognitivo</b>
+              y se valida con estudiantes reales mediante un diseño cuasi-experimental de dos grupos.
+            </p>
+            <div class="rq">
+              <p class="mono tiny">Pregunta de investigación mide</p>
+              <div class="rq-grid">
+                <div><b>a</b><span>Velocidad de iteración</span></div>
+                <div><b>b</b><span>Calidad de decisiones pasivas</span></div>
+                <div><b>c</b><span>Comprensión y transferencia</span></div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Fases doctorales -->
+        <div class="phases reveal">
+          <div class="phase-track"><span class="phase-fill" id="phaseFill"></span></div>
+          <div class="phase-list">
+            <button class="phase is-done" data-p="0"><span>1</span><b>Exploración</b><small>S1–S2</small></button>
+            <button class="phase is-done" data-p="1"><span>2</span><b>Análisis</b><small>S1–S3</small></button>
+            <button class="phase is-done" data-p="2"><span>3</span><b>Diseño</b><small>S2–S3</small></button>
+            <button class="phase" data-p="3"><span>4</span><b>Validación</b><small>S3–S6</small></button>
+          </div>
+          <p class="phase-desc" id="phaseDesc"></p>
+          <p class="fig-src">Fuente: <cite data-ref="volkmarProp"></cite>. Diseño cuasi-experimental con extensión propuesta hacia investigación basada en diseño (<cite data-ref="dbr2003"></cite>).</p>
+        </div>
+
+        <!-- Marco teórico -->
+        <div class="theory reveal">
+          <p class="mono tiny">Marco teórico de la hipótesis</p>
+          <div class="theory-grid">
+            <div class="th tilt"><b><cite data-ref="kolb1984"></cite></b><span>Aprendizaje experiencial: hacer, observar, conceptualizar, probar.</span></div>
+            <div class="th tilt"><b><cite data-ref="sweller1988"></cite></b><span>Carga cognitiva: liberar memoria para la decisión de diseño.</span></div>
+            <div class="th tilt"><b><cite data-ref="vygotsky1978"></cite></b><span>Andamiaje en la zona de desarrollo próximo.</span></div>
+            <div class="th tilt"><b><cite data-ref="norman2013"></cite></b><span>Reducir el <em>gulf of execution</em> entre intención y retroalimentación.</span></div>
+          </div>
+        </div>
+
+        <!-- Referencias (lista única del sitio, generada desde assets/js/references.js) -->
+        <div class="refs-block reveal" id="referencias">
+          <p class="mono tiny">Referencias · APA 7</p>
+          <ol class="ref-list" data-refs-for="all"></ol>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- CTA hacia portafolio -->
+    <section class="section cta-band">
+      <div class="wrap author reveal">
+        <figure class="author-photo tilt">
+          <svg viewBox="0 0 200 200" class="author-orbit" aria-hidden="true">
+            <circle cx="100" cy="100" r="96" />
+            <circle cx="100" cy="4" r="5" class="author-sun" />
+          </svg>
+          <img src="assets/2026_dvv.png" alt="Retrato de David Volkmar Vélez" width="1843" height="1838" loading="lazy" decoding="async" />
+        </figure>
+        <div class="author-copy">
+          <p class="mono tiny">Detrás del laboratorio</p>
+          <h2>Diez años entre la bioclimática, el BIM y el aula.</h2>
+          <p class="author-lead">
+            <b>David Volkmar Vélez</b> · Arquitecto, magíster en Bioclimática, coordinador BIM y docente del
+            Colegio Mayor de Antioquia. Autor del modelo BIOBIM.
+          </p>
+          <button class="btn btn-primary magnetic" data-view="portfolio">
+            Ver portafolio
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================================================================
+       VISTA 2 · HERRAMIENTAS
+       ===================================================================== -->
+  <main class="view" id="view-tools" data-view-panel="tools" hidden>
+
+    <!-- Encabezado + ruta -->
+    <section class="tk-hero" id="herramientas">
+      <div class="wrap">
+        <p class="eyebrow reveal"><span class="dot"></span> Paquete de herramientas BIOBIM</p>
+        <h1 class="tk-title reveal">Cada herramienta, <span class="grad">en su momento.</span></h1>
+        <p class="hero-lead reveal">
+          Una herramienta usada en la fase equivocada llega tarde o sobra. Aquí ves en qué fase del proyecto entra cada una,
+          qué criterio bioclimático resuelve y en qué orden se implementan dentro del ciclo BIOBIM.
+        </p>
+
+        <div class="route card reveal" id="route">
+          <div class="route-head">
+            <div>
+              <p class="mono tiny">Ruta de implementación</p>
+              <h3 id="routeTitle">Seis pasos, de lo general a lo específico</h3>
+            </div>
+            <button class="btn btn-ghost sm" id="routePlay">
+              <svg viewBox="0 0 24 24" class="i-play"><path d="M7 4l13 8-13 8z"/></svg>
+              <span>Recorrer la ruta</span>
+            </button>
+          </div>
+          <ol class="route-steps" id="routeSteps"></ol>
+          <p class="route-note" id="routeNote">
+            Toca un paso para ver cuándo entra la herramienta, o recorre la ruta completa.
+          </p>
+          <div class="route-rules">
+            <p class="mono tiny">¿Por qué este orden?</p>
+            <ol>
+              <li><b>De lo general a lo específico.</b> Sitio → volumen → planta → envolvente → recinto, al ritmo en que el modelo gana definición.</li>
+              <li><b>De menor a mayor exigencia técnica.</b> Primero la orientación, casi obligatoria; al final, las estrategias que requieren simulación (<cite data-ref="volkmarProp"></cite>).</li>
+              <li><b>Cada paso usa los resultados del anterior.</b> Ninguna herramienta entra antes de tener los datos que necesita.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 · Fases -->
+    <section class="section section-alt" id="fases">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">01</span>
+          <h2>Las cuatro fases del proyecto</h2>
+          <p class="sec-lead">
+            El proceso arquitectónico avanza de la prefactibilidad al proyecto. En cada fase cambia la pregunta, el nivel de
+            detalle del modelo y, por lo tanto, la herramienta que tiene sentido usar.
+          </p>
+        </div>
+
+        <div class="chevrons reveal" role="tablist" aria-label="Fases del proyecto" id="chevrons"></div>
+
+        <div class="phase-card card reveal" id="phaseCard" aria-live="polite">
+          <div class="pc-col">
+            <p class="mono tiny" id="pcKicker"></p>
+            <h3 id="pcTitle"></h3>
+            <div class="pc-block"><b>Alcance</b><p id="pcScope"></p></div>
+            <div class="pc-block"><b>Resultados</b><p id="pcResult"></p></div>
+          </div>
+          <div class="pc-col">
+            <p class="mono tiny">Criterios bioclimáticos de la fase</p>
+            <div class="crit-chips" id="pcCriteria"></div>
+            <p class="mono tiny" style="margin-top:22px">Herramientas en esta fase</p>
+            <div class="pc-tools" id="pcTools"></div>
+          </div>
+        </div>
+          <p class="fig-src">Fuente: alcance, resultados y criterios por fase según <cite data-ref="volkmar2024"></cite>.</p>
+      </div>
+    </section>
+
+    <!-- 02 · Mapa -->
+    <section class="section" id="mapa">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">02</span>
+          <h2>Mapa de implementación</h2>
+          <p class="sec-lead">
+            Cada fila es una herramienta, ordenada según su entrada al proceso. La barra sólida marca las fases donde
+            <b>entra</b>; la rayada, las fases donde <b>puede entrar</b> como apoyo.
+          </p>
+        </div>
+
+        <div class="map card reveal" id="map">
+          <div class="map-scroll">
+            <div class="map-grid" id="mapGrid"></div>
+          </div>
+          <div class="map-legend">
+            <span><i class="ml ml-core"></i>Entra: uso principal</span>
+            <span><i class="ml ml-opt"></i>Puede entrar: apoyo</span>
+            <span><i class="ml ml-start"></i>Punto de entrada</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · Criterios -->
+    <section class="section section-alt" id="criterios">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">03</span>
+          <h2>Criterios bioclimáticos por fase</h2>
+          <p class="sec-lead">
+            Los criterios se van sumando a medida que el proyecto gana definición. Pasa el cursor sobre un criterio para ver
+            qué herramienta lo trabaja.
+          </p>
+        </div>
+        <div class="crit card reveal">
+          <div class="map-scroll">
+            <table class="crit-table" id="critTable"></table>
+          </div>
+        </div>
+          <p class="fig-src">Fuente: criterios bioclimáticos por fase según <cite data-ref="volkmar2024"></cite>; asignación de herramientas BIOBIM, elaboración propia.</p>
+      </div>
+    </section>
+
+    <!-- 04 · Catálogo -->
+    <section class="section" id="catalogo">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">04</span>
+          <h2>Catálogo</h2>
+          <p class="sec-lead">
+            Filtra por fase y abre cada herramienta. Toca una tarjeta para ver qué entra, qué sale y qué aprendes.
+          </p>
+        </div>
+
+        <div class="filters reveal" id="toolFilters" role="radiogroup" aria-label="Filtrar herramientas por fase">
+          <button class="filter is-on" data-f="all">Todas</button>
+          <button class="filter" data-f="0">Prefactibilidad</button>
+          <button class="filter" data-f="1">Idea básica</button>
+          <button class="filter" data-f="2">Anteproyecto</button>
+          <button class="filter" data-f="3">Proyecto</button>
+        </div>
+
+        <div class="tools" id="toolsGrid"></div>
+      </div>
+    </section>
+
+    <!-- 05 · Ecosistema -->
+    <section class="section section-alt" id="ecosistema">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">05</span>
+          <h2>Ecosistema de simulación de referencia</h2>
+          <p class="sec-lead">
+            Programas profesionales revisados en la investigación (<cite data-ref="volkmar2024"></cite>). Las herramientas BIOBIM no los reemplazan: preparan al
+            estudiante para entender qué preguntar, cuándo y con qué nivel de detalle antes de llegar a ellos.
+          </p>
+        </div>
+        <div class="eco reveal">
+          <span>DesignBuilder</span><span>Grasshopper</span><span>Autodesk Insight</span><span>DIVA</span>
+          <span>DIALux</span><span>ClimateStudio</span><span>EnergyPlus</span><span>FormIt</span><span>Autodesk Forma</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       VISTA 3 · PORTAFOLIO
+       ===================================================================== -->
+  <main class="view" id="view-portfolio" data-view-panel="portfolio" hidden>
+    <section class="pf-hero">
+      <div class="wrap pf-hero-grid">
+        <div class="pf-id reveal">
+          <div class="avatar">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle cx="60" cy="60" r="56" class="av-ring"/>
+            </svg>
+            <img src="assets/2026_dvv.png" alt="Retrato de David Volkmar Vélez" />
+          </div>
+          <p class="eyebrow"><span class="dot"></span> Medellín, Colombia · Magíster en Bioclimática</p>
+          <h1 class="pf-name">David<br /><span class="grad">Volkmar Vélez</span></h1>
+          <p class="pf-roles" id="pfRoles" aria-live="polite">Arquitecto <span class="typed" id="typed"></span><span class="caret"></span></p>
+          <p class="hero-lead">
+            Arquitecto bioclimático, coordinador BIM y docente. Trabajo en el cruce entre el clima, el modelo de información
+            y la forma en que se enseña a diseñar.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary magnetic" href="assets/docs/Hoja_de_vida_David_Volkmar_Velez_2026.pdf" download="Hoja_de_vida_David_Volkmar_Velez_2026.pdf">
+              Hoja de vida (PDF)
+              <svg viewBox="0 0 24 24"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>
+            </a>
+            <a class="btn btn-ghost magnetic" href="mailto:davidvolkmar9@gmail.com">Escríbeme</a>
+          </div>
+        </div>
+
+        <div class="pf-stats reveal">
+          <div class="pfs card tilt"><b class="counter" data-to="10" data-suffix="+">0</b><span>años de práctica profesional</span></div>
+          <div class="pfs card tilt"><b class="counter" data-to="8" data-suffix="+">0</b><span>años como docente universitario</span></div>
+          <div class="pfs card tilt"><b class="counter" data-to="25" data-suffix="+">0</b><span>proyectos de diseño y asesoría</span></div>
+          <div class="pfs card tilt"><b class="counter" data-to="12" data-suffix="+">0</b><span>ponencias, talleres y concursos</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Perfil -->
+    <section class="section">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">A</span>
+          <h2>Cuatro áreas, un mismo propósito</h2>
+        </div>
+        <div class="pillars">
+          <article class="pillar card reveal tilt" style="--c:#ffb547">
+            <span class="pl-ic">☀</span><h3>Bioclimática</h3>
+            <p>Asesoría y diseño bioclimático en colegios, hoteles, vivienda y equipamientos públicos. Profesional Avanzado CASA (CCCS).</p>
+          </article>
+          <article class="pillar card reveal tilt" style="--c:#4fd1e8">
+            <span class="pl-ic">⬡</span><h3>BIM</h3>
+            <p>Coordinación BIM en Revit en proyectos residenciales, urbanos y de infraestructura, de la idea al detalle.</p>
+          </article>
+          <article class="pillar card reveal tilt" style="--c:#6fcf8e">
+            <span class="pl-ic">✎</span><h3>Docencia</h3>
+            <p>Docente en el Colegio Mayor de Antioquia y la USB: modelación paramétrica, representación digital y diseño.</p>
+          </article>
+          <article class="pillar card reveal tilt" style="--c:#b58cff">
+            <span class="pl-ic">⟁</span><h3>Diseño computacional</h3>
+            <p>Diseño generativo, fabricación digital, desarrollo de software y videojuegos aplicados a la arquitectura.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trayectoria -->
+    <section class="section section-alt">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">B</span>
+          <h2>Trayectoria</h2>
+        </div>
+        <div class="filters reveal" id="tlFilters" role="radiogroup" aria-label="Filtrar trayectoria">
+          <button class="filter is-on" data-f="all">Todo</button>
+          <button class="filter" data-f="pro">Profesional</button>
+          <button class="filter" data-f="doc">Docencia</button>
+          <button class="filter" data-f="edu">Formación</button>
+        </div>
+        <ol class="timeline" id="timeline"></ol>
+      </div>
+    </section>
+
+    <!-- Proyectos -->
+    <section class="section">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">C</span>
+          <h2>Proyectos</h2>
+          <p class="sec-lead">Selección de proyectos de diseño, coordinación BIM y asesoría bioclimática.</p>
+        </div>
+        <div class="filters reveal" id="pjFilters" role="radiogroup" aria-label="Filtrar proyectos">
+          <button class="filter is-on" data-f="all">Todos <em id="pjCount"></em></button>
+          <button class="filter" data-f="bio">Asesoría bioclimática</button>
+          <button class="filter" data-f="bim">Diseño + BIM</button>
+          <button class="filter" data-f="urb">Urbano y paisaje</button>
+          <button class="filter" data-f="edu">Educativos</button>
+        </div>
+        <div class="projects" id="projects"></div>
+      </div>
+    </section>
+
+    <!-- Ponencias -->
+    <section class="section section-alt">
+      <div class="wrap two-col">
+        <div>
+          <div class="sec-head reveal">
+            <span class="sec-num">D</span>
+            <h2>Ponencias y eventos</h2>
+          </div>
+          <ul class="talks" id="talks"></ul>
+        </div>
+        <div>
+          <div class="sec-head reveal">
+            <span class="sec-num">E</span>
+            <h2>Reconocimientos</h2>
+          </div>
+          <ul class="awards reveal">
+            <li class="card tilt"><span class="aw-y">2017</span><div><b>Mención de honor · DARP</b><p>Centro deportivo y cultural, Parque Fontanar del Río, Bogotá.</p></div></li>
+            <li class="card tilt"><span class="aw-y">2016</span><div><b>Concurso Corona Pro Hábitat</b><p>Centro cultural Karmatarua, Jardín, Antioquia: espacios comunitarios.</p></div></li>
+            <li class="card tilt"><span class="aw-y">2015–17</span><div><b>Matrícula de Honor</b><p>Mejor promedio, primer puesto. Universidad de San Buenaventura.</p></div></li>
+          </ul>
+
+          <div class="sec-head reveal" style="margin-top:3rem">
+            <span class="sec-num">F</span>
+            <h2>Herramientas de trabajo</h2>
+          </div>
+          <div class="skills reveal">
+            <span>Revit</span><span>Grasshopper</span><span>Rhinoceros</span><span>AutoCAD</span>
+            <span>SketchUp</span><span>IFC</span><span>Excel</span><span>Photoshop</span><span>Illustrator</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="section cta-band" id="contacto">
+      <div class="wrap cta-inner reveal">
+        <p class="mono tiny">Contacto</p>
+        <h2>¿Hablamos de clima, modelo y aula?</h2>
+        <div class="contact-row">
+          <button class="copy-mail magnetic" data-mail="davidvolkmar9@gmail.com">
+            <span>davidvolkmar9@gmail.com</span><em>Copiar</em>
+          </button>
+          <button class="copy-mail magnetic" data-mail="david.velez@colmayor.edu.co">
+            <span>david.velez@colmayor.edu.co</span><em>Copiar</em>
+          </button>
+        </div>
+        <button class="btn btn-ghost" data-view="lab">← Volver al laboratorio</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap foot">
+      <span>© <span id="year"></span> David Volkmar Vélez · BIOBIM Lab</span>
+      <span class="mono tiny">Hecho para estudiantes de arquitectura e ingeniería</span>
+    </div>
+  </footer>
+
+  <!-- Modal herramienta -->
+  <dialog class="modal" id="toolModal" aria-labelledby="mdTitle">
+    <div class="md-inner">
+      <button class="icon-btn md-close" id="mdClose" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div class="md-head">
+        <div class="md-icon" id="mdIcon"></div>
+        <div>
+          <p class="mono tiny" id="mdStage"></p>
+          <h3 id="mdTitle"></h3>
+        </div>
+      </div>
+      <p id="mdDesc"></p>
+      <p class="md-why"><span class="mono tiny">¿Por qué en este momento?</span><br /><span id="mdWhy"></span></p>
+      <div class="md-io">
+        <div><p class="mono tiny">Entradas</p><ul id="mdIn"></ul></div>
+        <div class="md-arrow" aria-hidden="true">→</div>
+        <div><p class="mono tiny">Salidas</p><ul id="mdOut"></ul></div>
+      </div>
+      <div class="md-refs" id="mdRefs"></div>
+      <p class="md-learn"><span class="mono tiny">Aprendes a</span><br /><b id="mdLearn"></b></p>
+      <div class="md-actions" id="mdActions"></div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/references.js"></script>
+  <script src="assets/js/tools-config.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
