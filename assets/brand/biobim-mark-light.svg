@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="256" height="256">
+  <title>BIOBIM · marca (fondos claros)</title>
+  <!-- Retícula 32 × 32. Sol naciente cortado por el horizonte-bóveda con un margen concéntrico. -->
+  <defs>
+    <mask id="bbHorizon" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">
+      <rect width="32" height="32" fill="#fff"/>
+      <path d="M2.5 25C8 16.5 24 16.5 29.5 25V32H2.5Z" fill="#000"/>
+      <path d="M2.5 25C8 16.5 24 16.5 29.5 25" fill="none" stroke="#000" stroke-width="6" stroke-linecap="round"/>
+    </mask>
+  </defs>
+  <g mask="url(#bbHorizon)"><circle cx="16" cy="17.5" r="8.4" fill="#E08A00"/></g>
+  <path d="M2.5 25C8 16.5 24 16.5 29.5 25" fill="none" stroke="#2F9D5B" stroke-width="3.2" stroke-linecap="round"/>
+</svg>

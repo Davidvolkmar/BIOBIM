@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>BIOBIM Lab</title>
+  <meta name="description" content="El territorio de las preguntas: un jardín 3D con trece salas sobre arquitectura, clima y BIM, del portafolio de David Volkmar Vélez." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Bungee&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/territorio.css?v=12" />
+  <link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg" />
+  <script>
+    // El territorio es una lámina dibujada a mano: siempre sobre papel claro
+    document.documentElement.dataset.theme = "light";
+  </script>
+  <script type="importmap">
+    { "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    } }
+  </script>
+</head>
+<body class="tr-body">
+  <!-- =====================================================================
+       EL TERRITORIO DE LA TRAYECTORIA · assets/js/territorio.js
+       Mundo 3D libre (orbitar, acercarse, desplazarse) con 13 estaciones de la
+       carrera. Cada estación es un ejercicio interactivo de representación.
+       ===================================================================== -->
+  <canvas class="tr-canvas" id="trCanvas" aria-hidden="true"></canvas>
+  <!-- Marco de lámina (decorativo) -->
+  <div class="tr-sheet" aria-hidden="true">
+    <span class="tr-sheet-tag">Lámina 01 · El territorio de las preguntas · Esc. 1:500 · DVV 2026</span>
+    <svg class="tr-north" viewBox="0 0 40 52"><path d="M20 4 L30 34 L20 28 L10 34 Z"/><text x="20" y="48">N</text></svg>
+  </div>
+  <div class="tr-pins" id="trPins"></div>
+
+  <!-- Barra superior -->
+  <header class="tr-top">
+    <a class="tr-back" href="index.html#portafolio" title="Volver al portafolio">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+      <span>BIO<b>BIM</b> Lab</span>
+    </a>
+    <div class="tr-title">
+      <p class="mono">Portafolio · David Volkmar Vélez</p>
+      <h1>El territorio de <span class="grad">las preguntas</span></h1>
+    </div>
+    <div class="tr-actions">
+      <button class="tr-btn tr-btn-mode" id="trMode" aria-pressed="false" title="Caminar con el personaje / vista libre (F)">
+        <svg viewBox="0 0 24 24" class="i-walk" aria-hidden="true"><circle cx="13" cy="4.5" r="2"/><path d="M10 21l2-6 3 3v3M9 10l3-3 3 3 2 1M12 7l-1 6"/></svg>
+        <svg viewBox="0 0 24 24" class="i-eye" aria-hidden="true"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg>
+        <span>Caminar</span>
+      </button>
+      <button class="tr-icon" id="trAvatar" title="Personaje (C)" aria-label="Crear o cambiar el personaje">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.6 3.6-5.6 7-5.6s6.2 2 7 5.6"/></svg>
+      </button>
+      <button class="tr-btn" id="trTour" aria-pressed="false" title="Recorrido guiado (G)">
+        <svg viewBox="0 0 24 24" class="i-play" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <svg viewBox="0 0 24 24" class="i-pause" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg>
+        <span>Recorrido guiado</span>
+      </button>
+      <button class="tr-icon" id="trHome" title="Vista general (H)" aria-label="Vista general">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7M6 10v10h12V10"/></svg>
+      </button>
+      <button class="tr-icon" id="trSound" aria-pressed="true" title="Sonido (M)" aria-label="Sonido">
+        <svg viewBox="0 0 24 24" class="i-on" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>
+        <svg viewBox="0 0 24 24" class="i-off" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM17 9l5 6M22 9l-5 6"/></svg>
+      </button>
+      <button class="tr-icon" id="trHelp" title="Controles (?)" aria-label="Ver controles">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Ficha de la estación con su ejercicio interactivo -->
+  <aside class="tr-card" id="trCard" aria-live="polite" hidden></aside>
+  <!-- Rótulo de sala (aparece al entrar y se desvanece) y control de la pieza expuesta -->
+  <div class="tr-salatitle" id="trSalaTitle" aria-hidden="true"></div>
+  <div class="tr-piece" id="trPiece" role="group" aria-label="Control de la pieza expuesta" hidden></div>
+  <div class="tr-light" id="trLight" role="dialog" aria-modal="true" aria-label="Panel de la sala" hidden>
+    <figure class="tr-light-fig">
+      <div class="tr-light-img"></div>
+      <figcaption><button class="tr-light-prev" type="button" aria-label="Panel anterior">←</button><span class="tr-light-n"></span><button class="tr-light-next" type="button" aria-label="Panel siguiente">→</button><button class="tr-light-x" type="button" aria-label="Cerrar panel">Cerrar ✕</button></figcaption>
+    </figure>
+  </div>
+
+  <!-- Capa de juego: conversación, globo para hablar, bitácora y botones laterales -->
+  <div class="tr-dlg" id="trDlg" role="dialog" aria-label="Conversación" hidden></div>
+  <button class="tr-talk" id="trTalk" type="button" hidden><kbd>E</kbd> Hablar</button>
+  <section class="tr-log" id="trLog" aria-label="Bitácora" hidden><h2>Bitácora:</h2><ol></ol></section>
+  <div class="tr-hud" aria-label="Acciones">
+    <button class="tr-hud-btn tr-logbtn" id="trLogBtn" type="button" aria-expanded="false" aria-controls="trLog" title="Bitácora (B)" aria-label="Bitácora">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="7" r="1.4"/><circle cx="5" cy="12" r="1.4"/><circle cx="5" cy="17" r="1.4"/><path d="M9 7h11M9 12h11M9 17h11"/></svg>
+    </button>
+    <button class="tr-hud-btn" id="trMusic" type="button" aria-pressed="true" title="Música (M)" aria-label="Música">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
+    </button>
+    <button class="tr-hud-btn" id="trShirt" type="button" title="Personaje (C)" aria-label="Cambiar el personaje">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3l-5 3 2 5 3-1v11h8V10l3 1 2-5-5-3c-.5 1.6-2 2.6-4 2.6S8.5 4.6 8 3z"/></svg>
+    </button>
+    <button class="tr-hud-btn" id="trWave" type="button" title="Saludar (R)" aria-label="Saludar">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 12V6.5a1.5 1.5 0 0 1 3 0V11m0-5.5V4.5a1.5 1.5 0 0 1 3 0V11m0-5a1.5 1.5 0 0 1 3 0v6m0-3a1.5 1.5 0 0 1 3 0v4.5c0 4-2.7 7-6.5 7-3 0-4.6-1.4-6-3.5L4.6 13a1.5 1.5 0 0 1 2.4-1.6L8.5 13"/></svg>
+    </button>
+  </div>
+
+  <!-- Minimapa (planta del territorio) -->
+  <div class="tr-map" id="trMap" aria-label="Planta del territorio"></div>
+
+  <!-- Línea de tiempo -->
+  <nav class="tr-dock" aria-label="Salas del recorrido">
+    <button class="tr-step" id="trPrev" aria-label="Estación anterior (Q)"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <ol class="tr-years" id="trYears"></ol>
+    <button class="tr-step" id="trNext" aria-label="Estación siguiente (E)"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+  </nav>
+  <p class="tr-sun mono" id="trSun" aria-hidden="true"></p>
+  <p class="tr-hitos mono" id="trHitos" aria-live="polite"></p>
+
+  <!-- Joystick (modo caminar en pantallas táctiles) -->
+  <div class="tr-stick" id="trStick" hidden aria-hidden="true"><i></i></div>
+  <button class="tr-jump" id="trJump" hidden aria-label="Saltar">Saltar</button>
+
+  <!-- Creador del personaje -->
+  <div class="tr-creator" id="trCreator" role="dialog" aria-modal="false" aria-labelledby="trCrT" hidden>
+    <div class="tr-cr-box">
+      <p class="mono tr-kicker">Tu personaje</p>
+      <h2 id="trCrT">¿Quién recorre la pasarela?</h2>
+      <p class="tr-cr-lead">Ajusta tu personaje o usa el predeterminado. Arrastra sobre la escena para girarlo.</p>
+      <div class="tr-cr-presets">
+        <button class="tr-seg" id="trCrDavid">Predeterminado</button>
+        <button class="tr-seg" id="trCrRandom">Aleatorio</button>
+      </div>
+      <div class="tr-cr-rows" id="trCrRows"></div>
+      <div class="tr-cr-cta">
+        <button class="btn btn-primary" id="trCrGo">Empezar a caminar</button>
+        <button class="btn btn-ghost" id="trCrSkip">Vista libre</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Entrada: carga, controles y modo de recorrido -->
+  <div class="tr-start" id="trStart" role="dialog" aria-modal="true" aria-labelledby="trStartTitle">
+    <div class="tr-start-box">
+      <h2 id="trStartTitle" class="tr-logo"><span>BIO</span><span>BIM</span></h2>
+      <p class="tr-logo-sub">El territorio de las preguntas</p>
+      <p class="mono tr-kicker">2012 → hoy · 13 salas · 13 hitos</p>
+      <p class="tr-lead">
+        Una pasarela elevada atraviesa un jardín botánico. Cada portal lleva a una sala con una pregunta de arquitectura,
+        clima o modelo, los proyectos que la trabajaron y un ejercicio para manipular. Recórrela con tu personaje o en
+        vista libre. El sol avanza con los años.
+      </p>
+      <ul class="tr-keys" id="trKeys">
+        <li><kbd>W</kbd> <kbd>S</kbd> avanzar · <kbd>A</kbd> <kbd>D</kbd> girar · la cámara te sigue</li>
+        <li><kbd>Joystick</kbd> en pantallas táctiles · <kbd>Shift</kbd> correr · <kbd>Espacio</kbd> saltar</li>
+        <li><kbd>Clic</kbd> / <kbd>toque</kbd> en el suelo para ir · en un panel de la sala para leerlo</li>
+        <li><kbd>L</kbd> leer el panel más cercano · <kbd>← →</kbd> pasar paneles</li>
+        <li><kbd>Arrastrar</kbd> girar la cámara</li>
+        <li><kbd>Rueda</kbd> / <kbd>pellizcar</kbd> acercar</li>
+        <li><kbd>E</kbd> conversar · <kbd>B</kbd> bitácora · <kbd>Q</kbd> sala anterior</li>
+        <li><kbd>F</kbd> caminar ↔ vista libre · <kbd>C</kbd> personaje · <kbd>R</kbd> saludar</li>
+      </ul>
+      <div class="tr-start-cta">
+        <button class="btn btn-primary" id="trGoWalk" disabled>
+          <span class="tr-load"><i></i>Construyendo el territorio…</span>
+          <span class="tr-ready">Comenzar</span>
+        </button>
+        <button class="btn btn-ghost" id="trGoFree" disabled>Vista libre</button>
+        <button class="btn btn-ghost" id="trGoTour" disabled>Recorrido guiado</button>
+      </div>
+      <p class="tr-note mono">Con sonido · se puede silenciar arriba a la derecha</p>
+    </div>
+  </div>
+
+  <div class="tr-fallback" id="trFallback" hidden>
+    <div class="tr-start-box">
+      <h2>El recorrido 3D no está disponible en este navegador</h2>
+      <p class="tr-lead">Necesita WebGL y conexión para cargar Three.js. La trayectoria completa está en el portafolio.</p>
+      <a class="btn btn-primary" href="index.html#trayectoria-lista">Ver la trayectoria en lista</a>
+    </div>
+  </div>
+
+  <script type="module" src="assets/js/territorio.js?v=12"></script>
+  <script>
+    // Si Three.js no carga (sin conexión o navegador sin módulos), se ofrece la versión en lista
+    setTimeout(function () {
+      if (window.__trReady) return;
+      document.getElementById("trStart").hidden = true;
+      document.getElementById("trFallback").hidden = false;
+    }, 20000);
+  </script>
+</body>
+</html>
